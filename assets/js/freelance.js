@@ -44,7 +44,7 @@ async function handleSubmit() {
     .map(c => c.textContent.trim()).join(', ');
 
   try {
-    const res = await fetch('https://formspree.io/f/TODO_FREELANCE_FORM_ID', {
+    const res = await fetch('https://formspree.io/f/mpqnlgqk', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
