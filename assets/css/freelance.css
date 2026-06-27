@@ -157,6 +157,17 @@
   display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
 }
 
+/* FAQ (pages freelance / vibers) */
+.faqs {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--border); border-radius: var(--r3);
+  overflow: hidden; background: var(--bg2);
+}
+.faqs .faq { padding: 1.5rem 1.75rem; border-bottom: 1px solid var(--border); }
+.faqs .faq:last-child { border-bottom: none; }
+.faqs .faq h3 { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 0.4rem; }
+.faqs .faq p { font-size: 14px; color: var(--text2); line-height: 1.7; font-weight: 300; }
+
 /* FORM CARD */
 .form-card {
   background: var(--bg2); border: 1px solid var(--border);
