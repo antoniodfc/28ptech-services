@@ -35,7 +35,7 @@ if (!/^[a-z0-9-]+$/.test(slug)) {
       if (!meta) { notFound('Cet article n\'existe pas (ou plus).'); return; }
 
       // Métadonnées d'en-tête
-      document.title = `${meta.title} — Antonio Da Fonseca · 28Ctech`;
+      document.title = `${meta.title} — Antonio Da Fonseca`;
       titleEl.textContent = meta.title;
       tagsEl.innerHTML = (meta.tags || [])
         .map(t => `<span class="mtag">${escapeHtml(t)}</span>`).join('');
