@@ -28,3 +28,34 @@ Le véritable enjeu n'est pas d'opposer la France à la Chine. C'est de **rédui
 Dans un monde où les compétences évoluent en permanence, apprendre à apprendre devient aussi important qu'apprendre un métier. Accumuler des connaissances ne suffit plus ; il faut développer une capacité d'adaptation continue.
 
 C'est précisément le rôle que peuvent jouer des dispositifs complémentaires au système scolaire : donner des compétences concrètes, une compréhension réelle de l'IA, et l'autonomie nécessaire pour continuer à progresser seul — plutôt qu'un simple stock de savoirs figés.
+
+---
+
+## Sources
+
+**Compétences numériques des jeunes**
+
+- [DEPP – Cedre Numérique : compétences numériques des élèves de troisième](https://www.education.gouv.fr)
+- [Ministère de l'Éducation nationale – PIX et compétences numériques](https://www.education.gouv.fr)
+- [Pix – Plateforme officielle de certification des compétences numériques](https://pix.fr)
+
+**Intelligence artificielle et éducation**
+
+- [Sénat – Intelligence artificielle et enseignement supérieur](https://www.senat.fr)
+- [Ministère de l'Enseignement supérieur – IA et enseignement supérieur](https://www.enseignementsup-recherche.gouv.fr)
+
+**Emploi et besoins du marché**
+
+- [France Travail – Les métiers du numérique](https://www.francetravail.fr)
+- [Numeum – Études et chiffres du numérique](https://numeum.fr)
+- [France Stratégie – Les métiers de demain](https://www.strategie.gouv.fr)
+
+**Chine et réforme des universités**
+
+- [Le Monde – In the age of AI, Chinese universities overhaul their curricula](https://www.lemonde.fr/en/)
+
+**Monde**
+
+- [UNESCO – Digital learning and education](https://www.unesco.org/en/digital-education)
+- [OCDE – Digital Education Outlook](https://www.oecd.org/education/)
+- [World Economic Forum – Future of Jobs Report](https://www.weforum.org/reports/)

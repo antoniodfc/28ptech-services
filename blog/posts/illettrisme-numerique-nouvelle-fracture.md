@@ -28,3 +28,25 @@ C'est là que tout se joue. Si les nations considèrent la maîtrise de l'IA com
 Nous sommes entrés dans une époque où la connaissance des outils numériques est devenue un facteur de souveraineté économique — pour les États comme pour les personnes. L'illettrisme numérique n'est plus seulement un enjeu social : c'est un enjeu d'égalité des chances.
 
 Le XXᵉ siècle a réussi l'alphabétisation. Le XXIᵉ devra réussir la littératie numérique et l'appropriation de l'intelligence artificielle.
+
+---
+
+## Sources
+
+**Illectronisme et compétences numériques**
+
+- [Insee – L'illectronisme en France (2023)](https://www.insee.fr)
+- [ANLCI – L'illectronisme en chiffres](https://www.anlci.gouv.fr)
+- [Baromètre du numérique (ARCEP, ARCOM, CGE, ANCT)](https://www.arcep.fr/cartes-et-donnees/nos-publications-chiffrees/numerique/le-barometre-du-numerique.html)
+
+**IA, souveraineté technologique et géopolitique**
+
+- [Anthropic – Newsroom](https://www.anthropic.com/news)
+- [OpenAI – News](https://openai.com/news)
+- [Commission européenne – AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+- [OCDE – AI Policy Observatory](https://oecd.ai)
+
+**Union européenne**
+
+- [Commission européenne – Digital Decade](https://digital-strategy.ec.europa.eu/en/policies/europes-digital-decade)
+- [DESI – Digital Economy and Society Index](https://digital-decade-desi.digital-strategy.ec.europa.eu/)

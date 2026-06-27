@@ -32,3 +32,29 @@ C'est la dimension la plus sous-estimée. Comprendre le numérique permet de :
 L'accès à l'IA ne suffit pas. Le véritable enjeu est de permettre à chacun de la comprendre, de l'utiliser avec discernement et d'en faire un levier d'émancipation plutôt qu'une dépendance subie.
 
 La lecture, l'écriture et le calcul ont longtemps défini les savoirs de base. Il faut désormais y ajouter la littératie numérique. Non pas comme un luxe technique, mais comme une condition d'autonomie dans une société où presque tout passe, déjà, par un écran.
+
+---
+
+## Sources
+
+**Illectronisme et compétences numériques**
+
+- [Insee – Enquête TIC auprès des ménages](https://www.insee.fr)
+- [ANLCI – L'illectronisme en chiffres](https://www.anlci.gouv.fr)
+- [Baromètre du numérique (ARCEP, ARCOM, CGE, ANCT)](https://www.arcep.fr/cartes-et-donnees/nos-publications-chiffrees/numerique/le-barometre-du-numerique.html)
+
+**Union européenne**
+
+- [Commission européenne – Digital Decade](https://digital-strategy.ec.europa.eu/en/policies/europes-digital-decade)
+- [DESI – Digital Economy and Society Index](https://digital-decade-desi.digital-strategy.ec.europa.eu/)
+
+**Monde**
+
+- [UNESCO – Digital learning and education](https://www.unesco.org/en/digital-education)
+- [OCDE – Digital Education Outlook](https://www.oecd.org/education/)
+- [World Economic Forum – Future of Jobs Report](https://www.weforum.org/reports/)
+
+**IA et souveraineté technologique**
+
+- [Commission européenne – AI Act](https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai)
+- [OCDE – AI Policy Observatory](https://oecd.ai)
