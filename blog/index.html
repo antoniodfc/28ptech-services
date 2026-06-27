@@ -3,41 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Antonio Da Fonseca</title>
   <meta name="description" content="Blog d'Antonio Da Fonseca — illettrisme numérique, accès à l'IA, littératie et fracture des compétences.">
-  <title>Blog - Antonio Da Fonseca</title>
+  <link rel="canonical" href="https://antoniodafonseca.com/blog/">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:site_name" content="Antonio Da Fonseca">
+  <meta property="og:url" content="https://antoniodafonseca.com/blog/">
+  <meta property="og:title" content="Blog — Antonio Da Fonseca">
+  <meta property="og:description" content="Blog d'Antonio Da Fonseca — illettrisme numérique, accès à l'IA, littératie et fracture des compétences.">
+  <meta property="og:image" content="https://antoniodafonseca.com/assets/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Blog — Antonio Da Fonseca">
+  <meta name="twitter:description" content="Blog d'Antonio Da Fonseca — illettrisme numérique, accès à l'IA, littératie et fracture des compétences.">
+  <meta name="twitter:image" content="https://antoniodafonseca.com/assets/og-image.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/base.css">
   <link rel="stylesheet" href="../assets/css/blog.css">
 </head>
 <body>
-
 <nav>
   <div class="nav-inner">
     <a href="../index.html" class="nav-logo">Antonio Da Fonseca</a>
     <div class="nav-links">
       <a href="../vibers.html" class="hide-mobile">Vibe Coders</a>
       <a href="../freelance.html" class="hide-mobile">Entreprises</a>
-      <a href="index.html" class="hide-mobile">Blog</a>
+      <a href="../blog/" class="hide-mobile">Blog</a>
       <a href="mailto:antonio.dafonseca.pro@gmail.com" class="nav-cta"><span class="nav-cta-inner"><span class="nav-dot"></span>Prendre contact</span></a>
     </div>
   </div>
 </nav>
-
 <main>
-
   <section class="blog-hero">
     <h1>Blog</h1>
     <p>Tous les articles, du plus récent au plus ancien.</p>
   </section>
 
-  <div id="tag-filter" class="tag-filter"></div>
-
-  <div id="post-list" class="post-grid">
-    <div class="blog-empty">Chargement des articles…</div>
+  <div class="tag-filter">
+      <button type="button" class="tag-chip" data-tag="Citoyenneté">Citoyenneté <span class="count">1</span></button>
+      <button type="button" class="tag-chip" data-tag="Compétences">Compétences <span class="count">1</span></button>
+      <button type="button" class="tag-chip" data-tag="Éducation">Éducation <span class="count">1</span></button>
+      <button type="button" class="tag-chip" data-tag="Esprit critique">Esprit critique <span class="count">1</span></button>
+      <button type="button" class="tag-chip" data-tag="IA">IA <span class="count">2</span></button>
+      <button type="button" class="tag-chip" data-tag="Illettrisme numérique">Illettrisme numérique <span class="count">2</span></button>
+      <button type="button" class="tag-chip" data-tag="Société">Société <span class="count">1</span></button>
   </div>
 
+  <div class="post-grid">
+      <a class="post-card" data-tags="Illettrisme numérique|IA|Société" href="illettrisme-numerique-nouvelle-fracture/">
+        <h2>Illettrisme numérique : la fracture n'est plus l'accès, c'est la maîtrise</h2>
+        <div class="post-card-date">24 juin 2026</div>
+        <p>Quand un État contrôle l'accès aux modèles d'IA les plus avancés, c'est le signe qu'ils sont devenus stratégiques. Pendant ce temps, une partie de la population ne maîtrise toujours pas les bases du numérique. Une nouvelle fracture s'installe.</p>
+        <div class="post-card-tags"><span class="post-tag">Illettrisme numérique</span><span class="post-tag">IA</span><span class="post-tag">Société</span></div>
+      </a>
+      <a class="post-card" data-tags="Éducation|Compétences|IA" href="metiers-hier-ou-demain-systeme-educatif/">
+        <h2>Préparons-nous les jeunes aux métiers d'hier ou à ceux de demain ?</h2>
+        <div class="post-card-date">10 juin 2026</div>
+        <p>La Chine a restructuré plus de 30 % de son offre universitaire en quatre ans. Sans opposer les pays, une question reste : combien de temps sépare encore l'innovation de son arrivée dans les programmes ?</p>
+        <div class="post-card-tags"><span class="post-tag">Éducation</span><span class="post-tag">Compétences</span><span class="post-tag">IA</span></div>
+      </a>
+      <a class="post-card" data-tags="Illettrisme numérique|Citoyenneté|Esprit critique" href="litteratie-numerique-enjeu-citoyen/">
+        <h2>La littératie numérique est devenue une compétence citoyenne</h2>
+        <div class="post-card-date">28 mai 2026</div>
+        <p>Comprendre le numérique, ce n'est pas seulement trouver un emploi. C'est repérer la désinformation, protéger ses données et garder son esprit critique face aux contenus générés par l'IA.</p>
+        <div class="post-card-tags"><span class="post-tag">Illettrisme numérique</span><span class="post-tag">Citoyenneté</span><span class="post-tag">Esprit critique</span></div>
+      </a>
+  </div>
 </main>
+
+<script src="../assets/js/blog-filter.js"></script>
 
 <footer>
   <div class="footer-inner">
@@ -46,7 +83,7 @@
       <a href="../index.html">Accueil</a>
       <a href="../vibers.html">Vibe Coders</a>
       <a href="../freelance.html">Missions</a>
-      <a href="index.html">Blog</a>
+      <a href="../blog/">Blog</a>
     </nav>
     <div class="footer-links">
       <a href="mailto:antonio.dafonseca.pro@gmail.com">Email</a>
@@ -56,7 +93,5 @@
     <span class="footer-copy">© 2026 Antonio Da Fonseca</span>
   </div>
 </footer>
-
-<script src="../assets/js/blog-list.js"></script>
 </body>
 </html>

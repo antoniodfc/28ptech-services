@@ -20,7 +20,7 @@ if (homeEl) {
         const tags = (p.tags || [])
           .map(t => `<span class="post-tag">${escapeHtml(t)}</span>`).join('');
         return `
-          <a class="post-card" href="blog/article.html?slug=${encodeURIComponent(p.slug)}">
+          <a class="post-card" href="blog/${encodeURIComponent(p.slug)}/">
             <h2>${escapeHtml(p.title)}</h2>
             <div class="post-card-date">${fmtDate(p.date)}</div>
             <p>${escapeHtml(p.excerpt || '')}</p>

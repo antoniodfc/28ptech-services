@@ -4,33 +4,50 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Static personal website for Antonio Da Fonseca (28Ctech) — DevOps Engineer freelance. Three pages in French, no build step, no framework, no package manager.
+Static personal website for Antonio Da Fonseca (28Ctech) — DevOps Engineer freelance, in French. The marketing pages are hand-written static HTML; the **blog is pre-generated** from Markdown by `build.js` (the only build step — no framework, no npm dependencies).
 
 ## Architecture
 
-Pure HTML/CSS/JS, served as static files. No bundler, no dependencies to install.
+Pure HTML/CSS/JS, served as static files. The blog is built by a small Node script that vendors `marked` (no `npm install` needed).
 
 ```
-index.html       — landing page (home), mailto CTA
+index.html       — landing page (home), mailto CTA, "Écrits" teaser (home-posts.js)
 freelance.html   — freelance missions, mailto CTA (no form)
 vibers.html      — Vibe Coders offering & Formspree contact form
+build.js         — generates the blog + sitemap.xml from blog/posts/
+sitemap.xml      — GENERATED — do not edit by hand
+robots.txt
+blog/
+  index.html     — GENERATED — article list + tag filter
+  <slug>/index.html — GENERATED — one static page per article (clean URLs)
+  posts/
+    posts.json   — article metadata (slug, title, date, excerpt, tags) — SOURCE
+    <slug>.md    — article body in Markdown — SOURCE
 assets/
-  css/
-    base.css     — design tokens (CSS vars), reset, shared components
-    freelance.css
-    index.css
-    vibers.css
-  js/
-    vibers.js    — chip toggles + Formspree form submission
+  css/    base.css (tokens) · freelance.css · index.css · vibers.css · blog.css
+  js/     vibers.js · home-posts.js · blog-filter.js · vendor/marked.min.js
+  favicon.svg · og-image.svg → og-image.png (social card, generated via rsvg-convert)
 ```
+
+Only `blog/posts/*.md` and `posts.json` are authored. Everything under `blog/<slug>/`, `blog/index.html` and `sitemap.xml` is **generated** — never edit those by hand; edit the source and re-run the build.
 
 `index.html` and `freelance.html` have no contact form — both use a `mailto:` CTA. Only `vibers.html` has a Formspree form, driven by `vibers.js`.
 
-CSS is layered: `base.css` is always loaded first and defines all design tokens (`--bg`, `--text`, `--r`, etc.). Page-specific files extend it. `index.html` and `freelance.html` both load `freelance.css` — they share the same layout styles.
+CSS is layered: `base.css` is always loaded first and defines all design tokens (`--bg`, `--text`, `--r`, etc.). Page-specific files extend it. `index.html` and `freelance.html` both load `freelance.css`.
+
+## Adding / editing a blog post
+
+1. Create `blog/posts/<slug>.md` (slug = lowercase letters/digits/hyphens). Optional `## Sources` section after a `---` is split out and rendered below the byline.
+2. Add an entry to `blog/posts/posts.json`.
+3. Run the build and commit the generated output (the static host does NOT build):
+
+```bash
+node build.js   # or: npm run build
+```
 
 ## Running locally
 
-Open any `.html` file directly in a browser, or use a local server to avoid CORS issues:
+Serve from the repo root (clean URLs need a server, not `file://`):
 
 ```bash
 npx serve .
