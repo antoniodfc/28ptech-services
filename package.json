@@ -1,0 +1,9 @@
+{
+  "name": "28ptech-services",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site statique d'Antonio Da Fonseca (28Ctech) — DevOps freelance + blog pré-généré.",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
