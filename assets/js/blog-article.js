@@ -47,6 +47,8 @@ if (!/^[a-z0-9-]+$/.test(slug)) {
         metaEl.innerHTML =
           `<span>${fmtDate(meta.date)}</span><span class="dot"></span><span>${readingTime(md)}</span>`;
         bodyEl.innerHTML = marked.parse(md);
+        document.getElementById('article-byline').innerHTML =
+          `Écrit par <strong>Antonio Da Fonseca</strong><span class="dot"></span>${fmtDate(meta.date)}`;
       });
     })
     .catch(() => notFound('Impossible de charger cet article.'));
