@@ -73,6 +73,17 @@ nav {
 }
 .nav-cta:hover { opacity: 0.8; }
 
+/* Sélecteur de langue */
+.lang-switch { display: inline-flex; align-items: center; gap: 1px; margin: 0 4px; }
+.lang-switch a {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--text3); text-decoration: none;
+  padding: 3px 6px; border-radius: 4px;
+  transition: color 0.15s, background 0.15s;
+}
+.lang-switch a:hover { color: var(--text); background: var(--bg3); }
+.lang-switch a.on { color: var(--text); font-weight: 500; }
+
 /* LAYOUT */
 main { flex: 1; max-width: 960px; margin: 0 auto; padding: 0 2rem; width: 100%; }
 .wrap { max-width: 960px; margin: 0 auto; padding: 0 2rem; }

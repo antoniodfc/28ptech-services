@@ -219,6 +219,8 @@ function sitemap(posts) {
     `${SITE}/`,
     `${SITE}/freelance.html`,
     `${SITE}/vibers.html`,
+    `${SITE}/en/`,
+    `${SITE}/pt/`,
     `${SITE}/blog/`,
     ...posts.map(p => `${SITE}/blog/${p.slug}/`)
   ];
