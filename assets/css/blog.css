@@ -1,0 +1,107 @@
+/* ============ BLOG ============ */
+
+/* Header de section blog (réutilise .hero spacing) */
+.blog-hero { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--border); }
+.blog-hero h1 {
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: 300; letter-spacing: -0.04em; line-height: 1.1;
+  margin-bottom: 1rem;
+}
+.blog-hero h1 strong { font-weight: 600; }
+.blog-hero p {
+  font-size: 16px; font-weight: 300; color: var(--text2);
+  line-height: 1.75; max-width: 520px;
+}
+
+/* ---- Liste des articles ---- */
+.post-list {
+  display: flex; flex-direction: column;
+  border: 1px solid var(--border); border-radius: var(--r3);
+  overflow: hidden; background: var(--bg2);
+  margin: 2.5rem 0;
+}
+.post-card {
+  display: block; text-decoration: none; color: inherit;
+  padding: 1.75rem; border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.post-card:last-child { border-bottom: none; }
+.post-card:hover { background: var(--bg3); }
+.post-card-meta {
+  display: flex; align-items: center; gap: 0.75rem;
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--text3); margin-bottom: 0.6rem;
+}
+.post-card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border2); }
+.post-card h2 {
+  font-size: 19px; font-weight: 500; letter-spacing: -0.02em;
+  line-height: 1.3; margin-bottom: 0.5rem;
+}
+.post-card p { font-size: 14px; color: var(--text2); line-height: 1.65; font-weight: 300; }
+.post-card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 1rem; }
+
+.blog-empty, .blog-error {
+  padding: 3rem 1rem; text-align: center;
+  font-size: 14px; color: var(--text2); font-weight: 300;
+}
+.blog-error a { color: var(--text); }
+
+/* ---- Article ---- */
+.article-head { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--border); margin-bottom: 2.5rem; }
+.article-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  color: var(--text3); text-decoration: none;
+  margin-bottom: 1.75rem; transition: color 0.15s;
+}
+.article-back:hover { color: var(--text); }
+.article-meta {
+  display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+  font-family: 'DM Mono', monospace; font-size: 11.5px;
+  color: var(--text3); margin-bottom: 1rem;
+}
+.article-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--border2); }
+.article-head h1 {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 400; letter-spacing: -0.035em; line-height: 1.15;
+}
+.article-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 1.25rem; }
+
+/* ---- Prose (Markdown rendu) ---- */
+.prose { max-width: 680px; margin: 0 auto 4rem; }
+.prose > * { margin-bottom: 1.15rem; }
+.prose h2 {
+  font-size: 24px; font-weight: 500; letter-spacing: -0.025em;
+  line-height: 1.25; margin-top: 2.5rem; margin-bottom: 1rem;
+}
+.prose h3 {
+  font-size: 18px; font-weight: 600; letter-spacing: -0.015em;
+  margin-top: 2rem; margin-bottom: 0.75rem;
+}
+.prose p, .prose li { font-size: 16px; line-height: 1.8; color: var(--text); font-weight: 300; }
+.prose strong { font-weight: 600; }
+.prose a { color: var(--green); text-decoration: underline; text-underline-offset: 2px; }
+.prose ul, .prose ol { padding-left: 1.4rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.prose li { padding-left: 0.25rem; }
+.prose blockquote {
+  border-left: 2px solid var(--green); padding: 0.25rem 0 0.25rem 1.25rem;
+  color: var(--text2); font-style: italic;
+}
+.prose code {
+  font-family: 'DM Mono', monospace; font-size: 13.5px;
+  background: var(--bg3); border: 1px solid var(--border);
+  padding: 1px 6px; border-radius: 4px; color: var(--text);
+}
+.prose pre {
+  background: #1A1917; color: #F0EFED;
+  border-radius: var(--r2); padding: 1.25rem 1.5rem;
+  overflow-x: auto; font-size: 13px; line-height: 1.6;
+}
+.prose pre code { background: none; border: none; padding: 0; color: inherit; font-size: 13px; }
+.prose img { max-width: 100%; height: auto; border-radius: var(--r2); border: 1px solid var(--border); }
+.prose hr { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+.prose h2:first-child, .prose h3:first-child, .prose p:first-child { margin-top: 0; }
+
+@media (max-width: 640px) {
+  .prose p, .prose li { font-size: 15px; }
+}
