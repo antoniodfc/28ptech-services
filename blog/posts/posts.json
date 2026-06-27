@@ -4,20 +4,62 @@
     "title": "Illettrisme numérique : la fracture n'est plus l'accès, c'est la maîtrise",
     "date": "2026-06-24",
     "excerpt": "Quand un État contrôle l'accès aux modèles d'IA les plus avancés, c'est le signe qu'ils sont devenus stratégiques. Pendant ce temps, une partie de la population ne maîtrise toujours pas les bases du numérique. Une nouvelle fracture s'installe.",
-    "tags": ["Illettrisme numérique", "IA", "Société"]
+    "tags": ["Illettrisme numérique", "IA", "Société"],
+    "faq": [
+      {
+        "q": "Qu'est-ce que l'illettrisme numérique (ou illectronisme) ?",
+        "a": "L'illettrisme numérique, aussi appelé illectronisme, désigne l'incapacité à utiliser les outils numériques du quotidien : naviguer sur Internet, remplir un formulaire en ligne, protéger ses données. Aujourd'hui, il englobe aussi le fait de ne pas savoir se servir de l'intelligence artificielle pour apprendre ou travailler."
+      },
+      {
+        "q": "Quelle est la différence entre la fracture numérique d'accès et de compétences ?",
+        "a": "La fracture d'accès, c'est ne pas disposer d'Internet ou d'un appareil. La fracture de compétences, plus actuelle, c'est y avoir accès sans savoir l'exploiter. Avec l'IA, l'écart se creuse entre ceux qui créent de la valeur grâce à ces outils et ceux qui les subissent."
+      },
+      {
+        "q": "En quoi l'intelligence artificielle aggrave-t-elle la fracture numérique ?",
+        "a": "L'IA devient un actif stratégique que certains États cherchent à contrôler. Pendant ce temps, savoir l'utiliser devient un avantage économique majeur. Le risque n'est plus seulement d'être exclu d'Internet, mais d'être exclu de l'économie de l'IA."
+      }
+    ]
   },
   {
     "slug": "metiers-hier-ou-demain-systeme-educatif",
     "title": "Préparons-nous les jeunes aux métiers d'hier ou à ceux de demain ?",
     "date": "2026-06-10",
     "excerpt": "La Chine a restructuré plus de 30 % de son offre universitaire en quatre ans. Sans opposer les pays, une question reste : combien de temps sépare encore l'innovation de son arrivée dans les programmes ?",
-    "tags": ["Éducation", "Compétences", "IA"]
+    "tags": ["Éducation", "Compétences", "IA"],
+    "faq": [
+      {
+        "q": "Quelles compétences numériques pour les métiers d'avenir ?",
+        "a": "Au-delà des outils, la compétence clé est d'« apprendre à apprendre » : être capable de s'adapter en continu, comprendre l'IA et l'utiliser concrètement. Les savoirs techniques se renouvelant tous les deux à trois ans, l'adaptabilité prime sur l'accumulation de connaissances figées."
+      },
+      {
+        "q": "Le système éducatif français est-il adapté à l'intelligence artificielle ?",
+        "a": "La France forme bien en IA, cybersécurité et cloud, mais il existe un décalage de rythme entre l'évolution des technologies et celle des cursus. Le vrai enjeu est de réduire le temps qui sépare une innovation de son arrivée dans les programmes."
+      },
+      {
+        "q": "Que peut-on apprendre de la réforme des universités chinoises ?",
+        "a": "Entre 2021 et 2025, la Chine a restructuré plus de 30 % de son offre universitaire, supprimant des cursus pour en ouvrir en IA, robotique et semi-conducteurs. Sans l'imiter, on peut en retenir une question simple : forme-t-on les jeunes aux métiers d'hier ou à ceux de demain ?"
+      }
+    ]
   },
   {
     "slug": "litteratie-numerique-enjeu-citoyen",
     "title": "La littératie numérique est devenue une compétence citoyenne",
     "date": "2026-05-28",
     "excerpt": "Comprendre le numérique, ce n'est pas seulement trouver un emploi. C'est repérer la désinformation, protéger ses données et garder son esprit critique face aux contenus générés par l'IA.",
-    "tags": ["Illettrisme numérique", "Citoyenneté", "Esprit critique"]
+    "tags": ["Illettrisme numérique", "Citoyenneté", "Esprit critique"],
+    "faq": [
+      {
+        "q": "Qu'est-ce que la littératie numérique ?",
+        "a": "La littératie numérique est la capacité à comprendre et utiliser les outils numériques avec discernement : pas seulement les manipuler, mais saisir leur fonctionnement, leurs limites et leurs risques. Elle devient un savoir de base, au même titre que lire, écrire et compter."
+      },
+      {
+        "q": "Pourquoi la littératie numérique est-elle une compétence citoyenne ?",
+        "a": "Parce qu'elle dépasse l'emploi : elle permet de repérer la désinformation, de protéger ses données, d'identifier les arnaques et de garder un esprit critique face aux contenus générés par l'IA. C'est une condition d'autonomie et de participation à la vie démocratique."
+      },
+      {
+        "q": "Comment se protéger de la désinformation générée par l'IA ?",
+        "a": "En développant son esprit critique : vérifier les sources, croiser l'information, se méfier des contenus trop parfaits ou trop émotionnels, et comprendre comment l'IA génère textes et images. À l'ère des contenus synthétiques, savoir douter intelligemment est une forme de protection."
+      }
+    ]
   }
 ]

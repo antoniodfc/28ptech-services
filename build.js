@@ -123,10 +123,35 @@ function renderArticle(post) {
 
   const tags = (post.tags || []).map(t => `<span class="mtag">${esc(t)}</span>`).join('');
 
+  // FAQ : contenu riche en mots-clés + balisage FAQPage (résultats enrichis Google)
+  const faq = post.faq || [];
+  const faqHtml = faq.length ? `
+    <section class="article-faq">
+      <h2>Questions fréquentes</h2>
+      ${faq.map(i => `<div class="faq-item"><h3>${esc(i.q)}</h3><p>${esc(i.a)}</p></div>`).join('\n      ')}
+    </section>` : '';
+  const faqExtra = faq.length ? `\n  <script type="application/ld+json">
+  ${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(i => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } }))
+  })}
+  </script>` : '';
+
+  // Maillage interne : les autres articles
+  const related = posts.filter(p => p.slug !== post.slug).slice(0, 2);
+  const relatedHtml = related.length ? `
+  <aside class="article-related">
+    <h2>À lire aussi</h2>
+    <div class="related-list">
+      ${related.map(r => `<a class="related-card" href="../${esc(r.slug)}/"><span class="related-title">${esc(r.title)}</span><span class="related-date">${fmtDate(r.date)}</span></a>`).join('\n      ')}
+    </div>
+  </aside>` : '';
+
   return head({
     title: `${post.title} — Antonio Da Fonseca`,
     desc: post.excerpt || '',
-    canonical, prefix, ogType: 'article', extra: jsonld
+    canonical, prefix, ogType: 'article', extra: jsonld + faqExtra
   }) + nav(prefix) + `
 <main>
   <article>
@@ -138,10 +163,11 @@ function renderArticle(post) {
     </header>
 
     <div class="prose">${mainHtml}</div>
-
+${faqHtml}
     <footer class="article-byline">Écrit par <strong>Antonio Da Fonseca</strong><span class="dot"></span>${fmtDate(post.date)}</footer>
     ${sourcesHtml ? `\n    <div class="prose">${sourcesHtml}</div>` : ''}
   </article>
+${relatedHtml}
 </main>
 ` + footer(prefix);
 }
@@ -213,7 +239,7 @@ let count = 0;
 for (const post of posts) {
   const dir = path.join(BLOG_DIR, post.slug);
   fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, 'index.html'), renderArticle(post));
+  fs.writeFileSync(path.join(dir, 'index.html'), renderArticle(post, posts));
   count++;
 }
 
