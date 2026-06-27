@@ -46,9 +46,17 @@ if (!/^[a-z0-9-]+$/.test(slug)) {
       }).then(md => {
         metaEl.innerHTML =
           `<span>${fmtDate(meta.date)}</span><span class="dot"></span><span>${readingTime(md)}</span>`;
-        bodyEl.innerHTML = marked.parse(md);
+
+        // Sépare le corps de l'article de la section "Sources" (si présente),
+        // pour insérer la signature entre les deux.
+        const sourcesIdx = md.search(/\n-{3,}\s*\n+#{1,2}\s+Sources/i);
+        const mainMd    = sourcesIdx === -1 ? md : md.slice(0, sourcesIdx);
+        const sourcesMd = sourcesIdx === -1 ? '' : md.slice(sourcesIdx).replace(/^\s*\n?-{3,}\s*\n+/, '');
+
+        bodyEl.innerHTML = marked.parse(mainMd);
         document.getElementById('article-byline').innerHTML =
           `Écrit par <strong>Antonio Da Fonseca</strong><span class="dot"></span>${fmtDate(meta.date)}`;
+        document.getElementById('article-sources').innerHTML = sourcesMd ? marked.parse(sourcesMd) : '';
       });
     })
     .catch(() => notFound('Impossible de charger cet article.'));

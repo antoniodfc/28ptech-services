@@ -85,7 +85,7 @@
 
 /* Signature de fin d'article */
 .article-byline {
-  max-width: 680px; margin: 0 auto 4rem;
+  max-width: 680px; margin: 0 auto 2.5rem;
   padding-top: 1.5rem; border-top: 1px solid var(--border);
   display: flex; align-items: center; gap: 0.6rem;
   font-family: 'DM Mono', monospace; font-size: 12.5px; color: var(--text3);
