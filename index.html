@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/freelance.css">
   <link rel="stylesheet" href="assets/css/index.css">
+  <link rel="stylesheet" href="assets/css/blog.css">
 </head>
 <body>
 
@@ -78,6 +79,17 @@
     </div>
   </section>
 
+  <section style="padding: 4rem 0; border-bottom: 1px solid var(--border);">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap; margin-bottom:2rem;">
+      <div>
+        <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;">Écrits</p>
+        <h2 style="font-size:clamp(24px,3.5vw,36px); font-weight:500; letter-spacing:-0.03em;">Illettrisme numérique &amp; IA</h2>
+      </div>
+      <a href="blog/index.html" class="door-arrow" style="white-space:nowrap;">Tout le blog →</a>
+    </div>
+    <div id="home-posts" class="post-grid"></div>
+  </section>
+
   <section style="padding: 4rem 0;">
     <p style="font-family:'DM Mono',monospace; font-size:11px; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:1rem;">À propos</p>
     <h2 style="font-size:clamp(24px,3.5vw,36px); font-weight:500; letter-spacing:-0.03em; margin-bottom:2rem;">Antonio Da Fonseca</h2>
@@ -132,5 +144,6 @@
   </div>
 </footer>
 
+<script src="assets/js/home-posts.js"></script>
 </body>
 </html>
