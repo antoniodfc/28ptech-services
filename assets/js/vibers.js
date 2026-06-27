@@ -45,7 +45,7 @@ async function handleSubmit() {
 
   const btn = document.getElementById('submit-btn');
   btn.disabled   = true;
-  btn.innerHTML  = '<i class="ti ti-loader-2"></i> Envoi en cours...';
+  btn.textContent = 'Envoi en cours…';
 
   try {
     const res = await fetch('https://formspree.io/f/mpqnlgqk', {
@@ -66,8 +66,8 @@ async function handleSubmit() {
       throw new Error('Formspree error');
     }
   } catch {
-    btn.disabled  = false;
-    btn.innerHTML = '<i class="ti ti-send"></i> Prendre contact';
+    btn.disabled    = false;
+    btn.textContent = 'Réserver mon échange gratuit';
     document.getElementById('form-error').style.display = 'block';
   }
 }
