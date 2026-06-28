@@ -11,9 +11,10 @@ Static personal website for Antonio Da Fonseca (28Ctech) — DevOps Engineer fre
 Pure HTML/CSS/JS, served as static files. The blog is built by a small Node script that vendors `marked` (no `npm install` needed).
 
 ```
-index.html       — landing page (home), mailto CTA, "Écrits" teaser (home-posts.js)
-freelance.html   — freelance missions, mailto CTA (no form)
-vibers.html      — Vibe Coders offering & Formspree contact form
+index.html       — landing page (home, FR), mailto CTA, "Écrits" teaser (home-posts.js)
+freelance.html   — freelance missions (FR), mailto CTA (no form)
+vibers.html      — Vibe Coders offering (FR) & Formspree contact form
+en/  pt/         — English & Portuguese versions of the 3 marketing pages (hand-maintained)
 build.js         — generates the blog + sitemap.xml from blog/posts/
 sitemap.xml      — GENERATED — do not edit by hand
 robots.txt
@@ -34,6 +35,12 @@ Only `blog/posts/*.md` and `posts.json` are authored. Everything under `blog/<sl
 `index.html` and `freelance.html` have no contact form — both use a `mailto:` CTA. Only `vibers.html` has a Formspree form, driven by `vibers.js`.
 
 CSS is layered: `base.css` is always loaded first and defines all design tokens (`--bg`, `--text`, `--r`, etc.). Page-specific files extend it. `index.html` and `freelance.html` both load `freelance.css`.
+
+## Internationalization (i18n)
+
+The 3 marketing pages exist in FR (root), EN (`/en/`) and PT (`/pt/`). The blog stays FR-only. Translations are **hand-maintained static copies** (no i18n framework) — when you change a marketing page, mirror the change in `en/` and `pt/`. Each page set is linked by `hreflang` (fr/en/pt + x-default→FR) in `<head>` and a `.lang-switch` widget in the nav. EN/PT pages reference shared assets via `../assets/...`. The marketing URLs in all 3 languages are listed manually in `build.js`'s `sitemap()` — add new ones there.
+
+`vibers.js` is shared across the 3 vibers pages: form element IDs are identical in every language; the submit button's label is read from the button's text content and its `data-loading` attribute, so it stays localized per page.
 
 ## Adding / editing a blog post
 
