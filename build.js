@@ -221,8 +221,10 @@ function sitemap(posts) {
     `${SITE}/vibers.html`,
     `${SITE}/en/`,
     `${SITE}/en/freelance.html`,
+    `${SITE}/en/vibers.html`,
     `${SITE}/pt/`,
     `${SITE}/pt/freelance.html`,
+    `${SITE}/pt/vibers.html`,
     `${SITE}/blog/`,
     ...posts.map(p => `${SITE}/blog/${p.slug}/`)
   ];
@@ -248,8 +250,9 @@ for (const post of posts) {
 }
 
 fs.writeFileSync(path.join(BLOG_DIR, 'index.html'), renderIndex(posts));
-fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sitemap(posts));
+const sm = sitemap(posts);
+fs.writeFileSync(path.join(ROOT, 'sitemap.xml'), sm);
 
 console.log(`✓ ${count} article(s) généré(s) dans blog/<slug>/`);
 console.log(`✓ blog/index.html`);
-console.log(`✓ sitemap.xml (${posts.length + 4} URLs)`);
+console.log(`✓ sitemap.xml (${(sm.match(/<loc>/g) || []).length} URLs)`);

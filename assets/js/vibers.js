@@ -15,7 +15,10 @@ function toggleChip(el) {
   document.getElementById('besoins').value = selected;
 }
 
-document.getElementById('submit-btn').addEventListener('click', handleSubmit);
+const submitBtn    = document.getElementById('submit-btn');
+const submitLabel  = submitBtn.textContent;                       // libellé d'origine (localisé dans le HTML)
+const loadingLabel = submitBtn.dataset.loading || 'Envoi en cours…';
+submitBtn.addEventListener('click', handleSubmit);
 
 async function handleSubmit() {
   const nameEl     = document.getElementById('name');
@@ -43,9 +46,9 @@ async function handleSubmit() {
 
   if (!valid) return;
 
-  const btn = document.getElementById('submit-btn');
+  const btn = submitBtn;
   btn.disabled   = true;
-  btn.textContent = 'Envoi en cours…';
+  btn.textContent = loadingLabel;
 
   try {
     const res = await fetch('https://formspree.io/f/mpqnlgqk', {
@@ -67,7 +70,7 @@ async function handleSubmit() {
     }
   } catch {
     btn.disabled    = false;
-    btn.textContent = 'Réserver mon échange gratuit';
+    btn.textContent = submitLabel;
     document.getElementById('form-error').style.display = 'block';
   }
 }
