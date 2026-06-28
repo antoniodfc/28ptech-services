@@ -73,16 +73,25 @@ nav {
 }
 .nav-cta:hover { opacity: 0.8; }
 
-/* Sélecteur de langue */
-.lang-switch { display: inline-flex; align-items: center; gap: 1px; margin: 0 4px; }
+/* Sélecteur de langue — segmented control */
+.lang-switch {
+  display: inline-flex; align-items: center; gap: 2px;
+  margin: 0 4px 0 10px; padding: 2px;
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 999px;
+}
 .lang-switch a {
   font-family: 'DM Mono', monospace; font-size: 11px;
+  font-weight: 500; line-height: 1; letter-spacing: 0.02em;
   color: var(--text3); text-decoration: none;
-  padding: 3px 6px; border-radius: 4px;
+  padding: 5px 9px; border-radius: 999px;
   transition: color 0.15s, background 0.15s;
 }
-.lang-switch a:hover { color: var(--text); background: var(--bg3); }
-.lang-switch a.on { color: var(--text); font-weight: 500; }
+.lang-switch a:hover { color: var(--text); }
+.lang-switch a.on {
+  color: var(--text); background: var(--bg2);
+  box-shadow: 0 1px 2px rgba(26, 25, 23, 0.06);
+}
 
 /* LAYOUT */
 main { flex: 1; max-width: 960px; margin: 0 auto; padding: 0 2rem; width: 100%; }
