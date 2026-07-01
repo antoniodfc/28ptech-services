@@ -50,7 +50,10 @@
       pole.className = 'techmap-pole';
       pole.textContent = cat.label;
       pole.setAttribute('aria-expanded', 'false');
+      pole._pinned = false; pole._hover = false;
       pole.addEventListener('click', () => toggle(i));
+      pole.addEventListener('mouseenter', () => hoverOn(i));
+      pole.addEventListener('mouseleave', () => hoverOff(i));
       stage.appendChild(pole);
       poles.push(pole);
 
@@ -67,6 +70,8 @@
         pill.className = 'techmap-pill';
         pill.textContent = txt;
         pill._line = line;
+        pill.addEventListener('mouseenter', () => hoverOn(i));
+        pill.addEventListener('mouseleave', () => hoverOff(i));
         branch.appendChild(pill);
         return pill;
       }));
@@ -172,10 +177,14 @@
     }
   }
 
-  // Niveau 2 : chaque catégorie ouvre / ferme ses items, indépendamment
-  function toggle(idx) {
-    setCat(idx, !poles[idx].classList.contains('open'));
+  // Niveau 2 : survol = aperçu temporaire, clic = épinglé (reste ouvert)
+  function refresh(i) { setCat(i, poles[i]._pinned || poles[i]._hover); }
+  function hoverOn(i) { clearTimeout(poles[i]._t); poles[i]._hover = true; refresh(i); }
+  function hoverOff(i) {
+    clearTimeout(poles[i]._t);                        // délai anti-clignotement pôle → item
+    poles[i]._t = setTimeout(() => { poles[i]._hover = false; refresh(i); }, 140);
   }
+  function toggle(i) { poles[i]._pinned = !poles[i]._pinned; refresh(i); }
 
   function setCat(idx, open, baseDelay) {
     const pole = poles[idx];
@@ -204,7 +213,10 @@
   }
 
   function closeAllItems() {
-    data.forEach((_, i) => setCat(i, false));
+    data.forEach((_, i) => {
+      poles[i]._pinned = false; poles[i]._hover = false; clearTimeout(poles[i]._t);
+      setCat(i, false);
+    });
   }
 
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllItems(); });
