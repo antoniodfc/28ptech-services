@@ -147,10 +147,13 @@
     center.setAttribute('aria-expanded', String(catsOpen));
     map.classList.toggle('cats-open', catsOpen);
     if (catsOpen) {
-      poles.forEach((p, i) => { p.style.transitionDelay = i * 40 + 'ms'; });   // apparition en cascade
+      poles.forEach((p, i) => {
+        p.style.transitionDelay = i * 40 + 'ms';        // apparition en cascade
+        p.style.animationDelay = i * 130 + 'ms';        // pulse "appel au clic" décalé
+      });
     } else {
-      close();                                                                  // referme un pôle ouvert
-      poles.forEach((p) => { p.style.transitionDelay = '0ms'; });
+      close();                                          // referme un pôle ouvert
+      poles.forEach((p) => { p.style.transitionDelay = '0ms'; p.style.animationDelay = '0ms'; });
     }
   }
 

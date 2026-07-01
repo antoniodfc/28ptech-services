@@ -212,10 +212,10 @@
 
 .techmap-center {
   position: absolute; z-index: 3; cursor: pointer;
-  width: 124px; height: 124px; border-radius: 50%;
+  width: 152px; height: 152px; border-radius: 50%;
   display: grid; place-items: center; text-align: center;
   background: var(--text); color: var(--bg2); border: none;
-  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.09em;
+  font-family: 'DM Mono', monospace; font-size: 16px; letter-spacing: 0.1em;
   text-transform: uppercase;
   transform: translate(-50%, -50%);
   animation: techBob 2.4s ease-in-out infinite;          /* respiration : incite au clic */
@@ -257,6 +257,14 @@
   opacity: 1; pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
 }
+/* appel au clic : les catégories pulsent tant qu'aucune n'est ouverte */
+.techmap.cats-open:not(.has-open) .techmap-pole {
+  animation: poleInvite 1.8s ease-in-out infinite;
+}
+@keyframes poleInvite {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0); }
+  50%      { box-shadow: 0 0 0 5px var(--bg3); border-color: var(--text3); }
+}
 .techmap-pole:hover { background: var(--bg3); }
 .techmap-pole.active { background: var(--text); border-color: var(--text); color: var(--bg2); }
 .techmap.has-open .techmap-pole.dim { opacity: 0.35; }        /* focus visuel : atténue les autres */
@@ -279,7 +287,7 @@
 @media (prefers-reduced-motion: reduce) {
   .techmap-pill, .techmap-link-item { transition-duration: 0.001s; }
   .techmap-pill { transition-delay: 0s !important; }
-  .techmap-center, .techmap-center::after { animation: none !important; }
+  .techmap-center, .techmap-center::after, .techmap-pole { animation: none !important; }
 }
 
 @media (max-width: 780px) {
