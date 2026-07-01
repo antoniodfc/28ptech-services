@@ -166,10 +166,9 @@
     map.classList.toggle('cats-open', catsOpen);
     if (catsOpen) {
       poles.forEach((p, i) => { p.style.transitionDelay = i * 40 + 'ms'; });   // pôles en cascade
-      data.forEach((_, i) => setCat(i, true, i * 60));                          // puis tous les items
     } else {
       poles.forEach((p) => { p.style.transitionDelay = '0ms'; });
-      data.forEach((_, i) => setCat(i, false));
+      closeAllItems();                                                          // referme tout au repli
     }
   }
 
