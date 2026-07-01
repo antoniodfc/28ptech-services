@@ -131,6 +131,53 @@
 .mission li strong { font-weight: 500; color: var(--text); }
 .mission li::before { content: '—'; position: absolute; left: 0; color: var(--text3); font-size: 11px; top: 2px; }
 
+/* MISSIONS — timeline verticale alternée (career timeline) */
+.timeline { position: relative; }
+.timeline::before {
+  content: ''; position: absolute; left: 50%; top: 6px; bottom: 6px;
+  width: 2px; background: var(--border); transform: translateX(-50%);
+}
+.tl-entry { position: relative; margin-bottom: 2.5rem; }
+.tl-entry:last-child { margin-bottom: 0; }
+
+/* pastille / nœud (année de début), centrée sur l'axe */
+.tl-marker {
+  position: absolute; left: 50%; top: 1.6rem; z-index: 2;
+  width: 44px; height: 44px; transform: translateX(-50%);
+  border-radius: 50%;
+  background: var(--bg2); border: 1px solid var(--border2);
+  box-shadow: 0 0 0 4px var(--bg);
+  display: grid; place-items: center;
+  font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500;
+  color: var(--text2); letter-spacing: -0.02em;
+}
+
+/* carte d'expérience, alternée gauche / droite */
+.timeline .mission {
+  position: relative;
+  width: calc(50% - 2.75rem);
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r3); padding: 1.5rem 1.75rem;
+}
+.timeline .mission:hover { background: var(--bg3); }
+.tl-entry:nth-child(odd) .mission { margin-left: 0; }
+.tl-entry:nth-child(even) .mission { margin-left: calc(50% + 2.75rem); }
+
+/* connecteur horizontal carte → axe */
+.timeline .mission::after {
+  content: ''; position: absolute; top: calc(1.6rem + 21px);
+  width: 2.75rem; height: 2px; background: var(--border);
+}
+.tl-entry:nth-child(odd) .mission::after { right: -2.75rem; }
+.tl-entry:nth-child(even) .mission::after { left: -2.75rem; }
+
+@media (max-width: 780px) {
+  .timeline::before { left: 21px; }
+  .tl-marker { left: 21px; }
+  .timeline .mission { width: auto; margin-left: 58px !important; }
+  .timeline .mission::after { display: none; }
+}
+
 /* ABOUT */
 .about-wrap { display: grid; grid-template-columns: 200px 1fr; gap: 3rem; align-items: start; }
 .about-links--col .about-link { white-space: normal; word-break: break-all; align-items: flex-start; }
