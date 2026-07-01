@@ -1,6 +1,6 @@
 /* PORTES (section d'aiguillage) */
 .doors {
-  display: grid; grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr;
   gap: 16px;
   animation: fadeUp 0.4s 0.1s ease both;
 }
