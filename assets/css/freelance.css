@@ -285,8 +285,8 @@
   opacity: 1; pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
 }
-/* appel au clic : une catégorie repliée pulse pour inviter à la rouvrir */
-.techmap.cats-open .techmap-pole:not(.open) {
+/* appel au clic : les catégories pulsent en continu, même items déployés */
+.techmap.cats-open .techmap-pole {
   animation: poleInvite 1.8s ease-in-out infinite;
 }
 @keyframes poleInvite {
