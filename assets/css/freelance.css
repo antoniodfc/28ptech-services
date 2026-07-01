@@ -47,19 +47,6 @@
 .prow-val { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--text); }
 .prow-val.green { color: var(--green); }
 
-/* STATS (grille 4 colonnes) */
-.stats {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  border: 1px solid var(--border); border-radius: var(--r3);
-  overflow: hidden; background: var(--bg2);
-  animation: fadeUp 0.4s 0.26s ease both;
-  margin-top: 3rem;
-}
-.stat { padding: 1.5rem 1.75rem; border-right: 1px solid var(--border); }
-.stat:last-child { border-right: none; }
-.stat-n { font-size: 28px; font-weight: 600; letter-spacing: -0.04em; color: var(--text); display: block; margin-bottom: 4px; }
-.stat p { font-size: 12.5px; color: var(--text3); line-height: 1.4; }
-
 /* STACK */
 .stack-grid { display: flex; flex-direction: column; gap: 1.25rem; }
 .stack-row { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -399,10 +386,6 @@
 @media (max-width: 640px) {
   .hero-layout { grid-template-columns: 1fr; }
   .profile-aside { display: none; }
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .stats .stat:nth-child(2) { border-right: none; }
-  .stats .stat:nth-child(3) { border-top: 1px solid var(--border); }
-  .stats .stat:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
   .svcs { grid-template-columns: 1fr; }
   .about-wrap { grid-template-columns: 1fr; }
   .about-strip { grid-template-columns: auto 1fr; }
