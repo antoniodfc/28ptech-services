@@ -259,11 +259,7 @@
   animation: techPulse 2s ease-out infinite;
 }
 .techmap-center:hover { box-shadow: 0 0 0 8px var(--bg3); }
-.techmap.cats-open .techmap-center {                      /* une fois ouvert : plus d'animation */
-  animation: none; transform: translate(-50%, -50%);
-  box-shadow: 0 0 0 5px var(--bg3);
-}
-.techmap.cats-open .techmap-center::after { animation: none; opacity: 0; }
+/* le nœud STACK garde sa respiration + son halo en continu, même carte déployée */
 
 @keyframes techBob {
   0%, 100% { transform: translate(-50%, -50%) scale(1); }
