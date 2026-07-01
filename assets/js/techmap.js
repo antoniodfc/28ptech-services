@@ -81,6 +81,10 @@
     window.addEventListener('resize', layout);
     layout();
 
+    // Recalcule une fois les polices chargées : sinon les pills sont mesurées avec la
+    // police de secours (plus étroite) et se chevauchent quand DM Mono les élargit.
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(layout);
+
     // Déploiement automatique des catégories à l'arrivée, en laissant jouer
     // l'état "fermé" une frame pour que la cascade d'apparition s'anime.
     requestAnimationFrame(() => requestAnimationFrame(() => { if (!catsOpen) toggleCats(); }));
@@ -113,7 +117,7 @@
     const list = pills[idx];
     const pole = poles[idx];
     const size = stage.clientWidth;
-    const gap = 8;
+    const gap = 14;
     const maxArc = (120 * Math.PI) / 180;          // fan étroit : chaque catégorie tient dans son secteur
     const ringBase = size * 0.115;                 // rayon (depuis le pôle) du 1er anneau
     const ringStep = size * 0.052;                 // écart radial entre anneaux (généré à la volée)
