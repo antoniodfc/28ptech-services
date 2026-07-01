@@ -58,6 +58,13 @@
 .about-langs { display: flex; gap: 5px; flex-wrap: wrap; }
 
 /* HERO au format carte photo */
+.hero-tagline {
+  font-family: 'DM Mono', monospace;
+  font-size: 13px; color: var(--text2);
+  letter-spacing: 0.02em;
+  margin-top: -0.6rem; margin-bottom: 1.75rem;
+}
+.hero-tagline .sep { color: var(--text3); margin: 0 0.15em; }
 .hero .hero-card {
   border: 1px solid var(--border);
   border-radius: var(--r3);
