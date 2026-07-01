@@ -185,6 +185,28 @@
   transform: rotate(90deg); transition: transform 0.2s;
 }
 .mission-toggle.open::after { transform: rotate(-90deg); }
+
+/* appel à cliquer : chevron qui rebondit + léger pulse de couleur tant que c'est replié */
+.mission-toggle:not(.open)::after { animation: missionChevron 1.5s ease-in-out infinite; }
+.mission-toggle:not(.open) { animation: missionInvite 1.5s ease-in-out infinite; }
+.mission-toggle:hover::after,
+.mission-toggle:hover { animation-play-state: paused; }        /* on stoppe le rebond au survol */
+.tl-entry:nth-child(2) .mission-toggle:not(.open),
+.tl-entry:nth-child(2) .mission-toggle:not(.open)::after { animation-delay: 0.25s; }
+.tl-entry:nth-child(3) .mission-toggle:not(.open),
+.tl-entry:nth-child(3) .mission-toggle:not(.open)::after { animation-delay: 0.5s; }
+
+@keyframes missionChevron {
+  0%, 100% { transform: rotate(90deg) translateX(0); }
+  55%      { transform: rotate(90deg) translateX(4px); }
+}
+@keyframes missionInvite {
+  0%, 100% { color: var(--text2); }
+  55%      { color: var(--text); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mission-toggle, .mission-toggle::after { animation: none !important; }
+}
 .timeline .mission ul { margin-top: 0.9rem; }
 .timeline .mission ul[hidden] { display: none; }
 
