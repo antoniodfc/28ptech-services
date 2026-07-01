@@ -5,7 +5,7 @@
   if (!map) return;
 
   const NS = 'http://www.w3.org/2000/svg';
-  const mq = window.matchMedia('(min-width: 760px)');
+  const mq = window.matchMedia('(min-width: 1000px)');
 
   const data = [...map.querySelectorAll('.stack-row')].map((row) => ({
     label: row.querySelector('.stack-lbl').textContent.trim(),
@@ -84,7 +84,7 @@
     stage.style.height = size + 'px';
     svg.setAttribute('viewBox', `0 0 ${size} ${size}`);
     const cx = size / 2, cy = size / 2;
-    const poleR = size * 0.30;
+    const poleR = size * 0.32;
     center.style.left = cx + 'px';
     center.style.top = cy + 'px';
     poles.forEach((pole, i) => {
@@ -100,35 +100,41 @@
     if (openIndex != null) placeItems(openIndex);
   }
 
-  // >8 items → deux anneaux concentriques
+  // Éventail vers l'extérieur : chaque pill occupe une largeur angulaire = f(largeur réelle),
+  // débordement réparti sur des anneaux concentriques → aucune collision tangentielle.
   function placeItems(idx) {
     const list = pills[idx];
-    const n = list.length;
+    const pole = poles[idx];
     const size = stage.clientWidth;
-    const r1 = size * 0.14, r2 = size * 0.215;
-    if (n > 8) {
-      const c = Math.ceil(n / 2);
-      placeRing(list.slice(0, c), poles[idx], r1);
-      placeRing(list.slice(c), poles[idx], r2);
-    } else {
-      placeRing(list, poles[idx], r1);
-    }
-  }
+    const gap = 10;
+    const maxArc = (160 * Math.PI) / 180;
+    const rings = [size * 0.12, size * 0.18, size * 0.24];
 
-  // éventail vers l'extérieur (autour de la direction centre→pôle)
-  function placeRing(list, pole, r) {
-    const k = list.length;
-    if (!k) return;
-    const spread = (Math.min(150, 30 * k) * Math.PI) / 180;
-    const step = k > 1 ? spread / (k - 1) : 0;
-    list.forEach((pill, j) => {
-      const ang = pole._a + (j - (k - 1) / 2) * step;
-      const ix = pole._x + r * Math.cos(ang);
-      const iy = pole._y + r * Math.sin(ang);
-      pill.style.left = ix + 'px';
-      pill.style.top = iy + 'px';
-      pill._line.setAttribute('x1', pole._x); pill._line.setAttribute('y1', pole._y);
-      pill._line.setAttribute('x2', ix); pill._line.setAttribute('y2', iy);
+    const groups = rings.map(() => []);
+    let ri = 0, acc = 0;
+    list.forEach((pill) => {
+      let aw = (pill.offsetWidth + gap) / rings[ri];
+      if (acc + aw > maxArc && ri < rings.length - 1) {
+        ri++; acc = 0; aw = (pill.offsetWidth + gap) / rings[ri];
+      }
+      groups[ri].push({ pill, aw });
+      acc += aw;
+    });
+
+    groups.forEach((items, r) => {
+      const R = rings[r];
+      const total = items.reduce((s, x) => s + x.aw, 0);
+      let ang = pole._a - total / 2;               // arc centré sur la direction centre→pôle
+      items.forEach((x) => {
+        const mid = ang + x.aw / 2;
+        const ix = pole._x + R * Math.cos(mid);
+        const iy = pole._y + R * Math.sin(mid);
+        x.pill.style.left = ix + 'px';
+        x.pill.style.top = iy + 'px';
+        x.pill._line.setAttribute('x1', pole._x); x.pill._line.setAttribute('y1', pole._y);
+        x.pill._line.setAttribute('x2', ix); x.pill._line.setAttribute('y2', iy);
+        ang += x.aw;
+      });
     });
   }
 
