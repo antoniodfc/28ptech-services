@@ -118,13 +118,22 @@
     const ringBase = size * 0.115;                 // rayon (depuis le pôle) du 1er anneau
     const ringStep = size * 0.052;                 // écart radial entre anneaux (généré à la volée)
 
-    // répartition sur autant d'anneaux que nécessaire, sans collision tangentielle
+    // répartition sur autant d'anneaux que nécessaire, sans collision tangentielle.
+    // Largeur angulaire basée sur la CORDE : 2·asin(largeur / 2R) → la distance en ligne
+    // droite entre deux pills voisines vaut exactement leur largeur (+ gap). Une pill trop
+    // large pour un anneau est repoussée vers un anneau plus grand où l'angle se réduit.
     const groups = [];
     let ri = 0, acc = 0;
     list.forEach((pill) => {
-      let R = ringBase + ri * ringStep;
-      let aw = (pill.offsetWidth + gap) / R;
-      if (acc + aw > maxArc) { ri++; acc = 0; R = ringBase + ri * ringStep; aw = (pill.offsetWidth + gap) / R; }
+      const w = pill.offsetWidth + gap;
+      let R, aw;
+      while (true) {
+        R = ringBase + ri * ringStep;
+        aw = 2 * Math.asin(Math.min(1, w / (2 * R)));
+        if (acc === 0) { if (aw <= maxArc || ri >= 24) break; }
+        else if (acc + aw <= maxArc) break;
+        ri++; acc = 0;                       // anneau suivant : rayon plus grand → angle plus petit
+      }
       (groups[ri] || (groups[ri] = [])).push({ pill, aw });
       acc += aw;
     });
