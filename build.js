@@ -65,7 +65,7 @@ const nav = prefix => `
   <div class="nav-inner">
     <a href="${prefix}index.html" class="nav-logo">Antonio Da Fonseca</a>
     <div class="nav-links">
-      <a href="${prefix}vibers.html" class="hide-mobile">Vibe Coders</a>
+      <!-- Vibe Coders masqué pour l'instant <a href="${prefix}vibers.html" class="hide-mobile">Vibe Coders</a> -->
       <a href="${prefix}freelance.html" class="hide-mobile">Entreprises</a>
       <a href="${prefix}blog/" class="hide-mobile">Blog</a>
       <a href="mailto:antonio.dafonseca.pro@gmail.com" class="nav-cta"><span class="nav-cta-inner"><span class="nav-dot"></span>Prendre contact</span></a>
@@ -79,7 +79,7 @@ const footer = prefix => `
     <a href="${prefix}index.html" class="footer-logo"><span class="logo-top">28<span class="p">C</span></span><span class="logo-bot">tech</span></a>
     <nav class="footer-nav">
       <a href="${prefix}index.html">Accueil</a>
-      <a href="${prefix}vibers.html">Vibe Coders</a>
+      <!-- Vibe Coders masqué pour l'instant <a href="${prefix}vibers.html">Vibe Coders</a> -->
       <a href="${prefix}freelance.html">Missions</a>
       <a href="${prefix}blog/">Blog</a>
     </nav>
@@ -218,13 +218,13 @@ function sitemap(posts) {
   const urls = [
     `${SITE}/`,
     `${SITE}/freelance.html`,
-    `${SITE}/vibers.html`,
+    // Vibe Coders masqué pour l'instant (retiré du sitemap) : `${SITE}/vibers.html`,
     `${SITE}/en/`,
     `${SITE}/en/freelance.html`,
-    `${SITE}/en/vibers.html`,
+    // `${SITE}/en/vibers.html`,
     `${SITE}/pt/`,
     `${SITE}/pt/freelance.html`,
-    `${SITE}/pt/vibers.html`,
+    // `${SITE}/pt/vibers.html`,
     `${SITE}/blog/`,
     ...posts.map(p => `${SITE}/blog/${p.slug}/`)
   ];
