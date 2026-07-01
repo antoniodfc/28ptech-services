@@ -16,7 +16,7 @@
   const N = data.length;
   let stage, svg, center;
   const spokes = [], poles = [], branches = [], pills = [];
-  let openIndex = null, built = false, catsOpen = false;
+  let built = false, catsOpen = false;
 
   function build() {
     if (built) return;
@@ -76,10 +76,14 @@
     map.classList.add('is-enhanced');
 
     stage.addEventListener('click', (e) => {
-      if (e.target === stage || e.target === svg) close();
+      if (e.target === stage || e.target === svg) closeAllItems();
     });
     window.addEventListener('resize', layout);
     layout();
+
+    // Déploiement automatique des catégories à l'arrivée, en laissant jouer
+    // l'état "fermé" une frame pour que la cascade d'apparition s'anime.
+    requestAnimationFrame(() => requestAnimationFrame(() => { if (!catsOpen) toggleCats(); }));
   }
 
   function layout() {
@@ -100,7 +104,7 @@
       spokes[i].setAttribute('x1', cx); spokes[i].setAttribute('y1', cy);
       spokes[i].setAttribute('x2', px); spokes[i].setAttribute('y2', py);
     });
-    if (openIndex != null) placeItems(openIndex);
+    poles.forEach((p, i) => { if (p.classList.contains('open')) placeItems(i); });
   }
 
   // Éventail vers l'extérieur : chaque pill occupe une largeur angulaire = f(largeur réelle),
@@ -109,23 +113,24 @@
     const list = pills[idx];
     const pole = poles[idx];
     const size = stage.clientWidth;
-    const gap = 10;
-    const maxArc = (160 * Math.PI) / 180;
-    const rings = [size * 0.12, size * 0.18, size * 0.24];
+    const gap = 8;
+    const maxArc = (120 * Math.PI) / 180;          // fan étroit : chaque catégorie tient dans son secteur
+    const ringBase = size * 0.115;                 // rayon (depuis le pôle) du 1er anneau
+    const ringStep = size * 0.052;                 // écart radial entre anneaux (généré à la volée)
 
-    const groups = rings.map(() => []);
+    // répartition sur autant d'anneaux que nécessaire, sans collision tangentielle
+    const groups = [];
     let ri = 0, acc = 0;
     list.forEach((pill) => {
-      let aw = (pill.offsetWidth + gap) / rings[ri];
-      if (acc + aw > maxArc && ri < rings.length - 1) {
-        ri++; acc = 0; aw = (pill.offsetWidth + gap) / rings[ri];
-      }
-      groups[ri].push({ pill, aw });
+      let R = ringBase + ri * ringStep;
+      let aw = (pill.offsetWidth + gap) / R;
+      if (acc + aw > maxArc) { ri++; acc = 0; R = ringBase + ri * ringStep; aw = (pill.offsetWidth + gap) / R; }
+      (groups[ri] || (groups[ri] = [])).push({ pill, aw });
       acc += aw;
     });
 
     groups.forEach((items, r) => {
-      const R = rings[r];
+      const R = ringBase + r * ringStep;
       const total = items.reduce((s, x) => s + x.aw, 0);
       let ang = pole._a - total / 2;               // arc centré sur la direction centre→pôle
       items.forEach((x) => {
@@ -141,64 +146,56 @@
     });
   }
 
-  // Niveau 1 : le nœud central affiche / masque toutes les catégories
+  // Niveau 1 : le nœud central affiche / masque toute la carte (catégories + items)
   function toggleCats() {
     catsOpen = !catsOpen;
     center.setAttribute('aria-expanded', String(catsOpen));
     map.classList.toggle('cats-open', catsOpen);
     if (catsOpen) {
-      poles.forEach((p, i) => {
-        p.style.transitionDelay = i * 40 + 'ms';        // apparition en cascade
-        p.style.animationDelay = i * 130 + 'ms';        // pulse "appel au clic" décalé
-      });
+      poles.forEach((p, i) => { p.style.transitionDelay = i * 40 + 'ms'; });   // pôles en cascade
+      data.forEach((_, i) => setCat(i, true, i * 60));                          // puis tous les items
     } else {
-      close();                                          // referme un pôle ouvert
-      poles.forEach((p) => { p.style.transitionDelay = '0ms'; p.style.animationDelay = '0ms'; });
+      poles.forEach((p) => { p.style.transitionDelay = '0ms'; });
+      data.forEach((_, i) => setCat(i, false));
     }
   }
 
-  // Niveau 2 : un pôle affiche / masque ses items
+  // Niveau 2 : chaque catégorie ouvre / ferme ses items, indépendamment
   function toggle(idx) {
-    if (openIndex === idx) { close(); return; }
-    if (openIndex != null) collapse(openIndex);
-    openIndex = idx;
-    map.classList.add('has-open');
-    poles.forEach((p, i) => p.classList.toggle('dim', i !== idx));
-    poles[idx].classList.add('active');
-    poles[idx].classList.remove('dim');
-    poles[idx].setAttribute('aria-expanded', 'true');
-    branches[idx].classList.add('show');
-    placeItems(idx);
-    pills[idx].forEach((pill, j) => {
-      pill.style.transitionDelay = j * 40 + 'ms';       // cascade ~40ms
-      pill._line.style.transitionDelay = j * 40 + 'ms';
-    });
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      pills[idx].forEach((pill) => { pill.classList.add('in'); pill._line.classList.add('in'); });
-    }));
+    setCat(idx, !poles[idx].classList.contains('open'));
   }
 
-  function collapse(idx) {
-    poles[idx].classList.remove('active');
-    poles[idx].setAttribute('aria-expanded', 'false');
-    branches[idx].classList.remove('show');
-    pills[idx].forEach((pill) => {
-      pill.classList.remove('in');
-      pill.style.transitionDelay = '0ms';
-      pill._line.classList.remove('in');
-      pill._line.style.transitionDelay = '0ms';
-    });
+  function setCat(idx, open, baseDelay) {
+    const pole = poles[idx];
+    if (pole.classList.contains('open') === open && baseDelay == null) return;
+    pole.classList.toggle('open', open);
+    pole.setAttribute('aria-expanded', String(open));
+    const branch = branches[idx];
+    if (open) {
+      branch.classList.add('show');
+      placeItems(idx);
+      pills[idx].forEach((pill, j) => {
+        const d = (baseDelay || 0) + j * 40 + 'ms';       // cascade ~40ms (+ décalage par catégorie)
+        pill.style.transitionDelay = d;
+        pill._line.style.transitionDelay = d;
+      });
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        pills[idx].forEach((pill) => { pill.classList.add('in'); pill._line.classList.add('in'); });
+      }));
+    } else {
+      branch.classList.remove('show');
+      pills[idx].forEach((pill) => {
+        pill.classList.remove('in'); pill.style.transitionDelay = '0ms';
+        pill._line.classList.remove('in'); pill._line.style.transitionDelay = '0ms';
+      });
+    }
   }
 
-  function close() {
-    if (openIndex == null) return;
-    collapse(openIndex);
-    openIndex = null;
-    map.classList.remove('has-open');
-    poles.forEach((p) => p.classList.remove('dim'));
+  function closeAllItems() {
+    data.forEach((_, i) => setCat(i, false));
   }
 
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAllItems(); });
 
   if (mq.matches) build();
   mq.addEventListener('change', (e) => { if (e.matches) build(); });

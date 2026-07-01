@@ -195,7 +195,7 @@
   .techmap.is-enhanced {
     width: min(94vw, 1160px); max-width: none;
     left: 50%; transform: translateX(-50%);
-    margin-top: 2rem;
+    margin: 5.5rem 0 4.5rem;   /* respiration : les anneaux qui débordent en haut/bas ne percutent rien */
   }
 }
 .techmap.is-enhanced .techmap-data { display: none; }         /* fallback masqué une fois enrichi */
@@ -257,8 +257,8 @@
   opacity: 1; pointer-events: auto;
   transform: translate(-50%, -50%) scale(1);
 }
-/* appel au clic : les catégories pulsent tant qu'aucune n'est ouverte */
-.techmap.cats-open:not(.has-open) .techmap-pole {
+/* appel au clic : une catégorie repliée pulse pour inviter à la rouvrir */
+.techmap.cats-open .techmap-pole:not(.open) {
   animation: poleInvite 1.8s ease-in-out infinite;
 }
 @keyframes poleInvite {
