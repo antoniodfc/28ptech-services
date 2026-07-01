@@ -18,20 +18,31 @@
     ul.id = id;
     ul.hidden = true;
 
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'mission-toggle';
-    btn.setAttribute('aria-expanded', 'false');
-    btn.setAttribute('aria-controls', id);
-    btn.textContent = t.more(n);
-    ul.parentNode.insertBefore(btn, ul);
+    // Indicateur visuel (label + chevron) — non interactif : c'est la carte qui est cliquable.
+    const hint = document.createElement('span');
+    hint.className = 'mission-toggle';
+    hint.textContent = t.more(n);
+    ul.parentNode.insertBefore(hint, ul);
 
-    btn.addEventListener('click', () => {
+    // Toute la carte devient le bouton
+    mission.classList.add('is-toggle');
+    mission.setAttribute('role', 'button');
+    mission.tabIndex = 0;
+    mission.setAttribute('aria-expanded', 'false');
+    mission.setAttribute('aria-controls', id);
+
+    const toggle = () => {
       const opening = ul.hidden;
       ul.hidden = !opening;
-      btn.classList.toggle('open', opening);
-      btn.setAttribute('aria-expanded', String(opening));
-      btn.textContent = opening ? t.less() : t.more(n);
+      mission.classList.toggle('open', opening);
+      hint.classList.toggle('open', opening);
+      mission.setAttribute('aria-expanded', String(opening));
+      hint.textContent = opening ? t.less() : t.more(n);
+    };
+
+    mission.addEventListener('click', toggle);
+    mission.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
   });
 })();

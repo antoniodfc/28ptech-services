@@ -171,41 +171,45 @@
 .tl-entry:nth-child(odd) .mission::after { right: -2.75rem; }
 .tl-entry:nth-child(even) .mission::after { left: -2.75rem; }
 
-/* bouton "voir les réalisations" (accordéon, ajouté par mission-toggle.js) */
+/* indicateur "voir les réalisations" (label + chevron) — la carte entière est cliquable */
 .mission-toggle {
   margin-top: 0.9rem; padding: 4px 0;
   display: inline-flex; align-items: center; gap: 7px;
-  cursor: pointer; background: none; border: none;
   font-family: 'DM Mono', monospace; font-size: 12px;
   color: var(--text2); transition: color 0.15s;
 }
-.mission-toggle:hover { color: var(--text); }
 .mission-toggle::after {
   content: '›'; font-size: 15px; line-height: 1;
   transform: rotate(90deg); transition: transform 0.2s;
 }
 .mission-toggle.open::after { transform: rotate(-90deg); }
 
-/* appel à cliquer : chevron qui rebondit + léger pulse de couleur tant que c'est replié */
-.mission-toggle:not(.open)::after { animation: missionChevron 1.5s ease-in-out infinite; }
-.mission-toggle:not(.open) { animation: missionInvite 1.5s ease-in-out infinite; }
-.mission-toggle:hover::after,
-.mission-toggle:hover { animation-play-state: paused; }        /* on stoppe le rebond au survol */
-.tl-entry:nth-child(2) .mission-toggle:not(.open),
-.tl-entry:nth-child(2) .mission-toggle:not(.open)::after { animation-delay: 0.25s; }
-.tl-entry:nth-child(3) .mission-toggle:not(.open),
-.tl-entry:nth-child(3) .mission-toggle:not(.open)::after { animation-delay: 0.5s; }
+/* La carte est le bouton : curseur, survol, focus clavier */
+.timeline .mission.is-toggle {
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease, background 0.15s ease;
+}
+.timeline .mission.is-toggle:hover { border-color: var(--border2); box-shadow: 0 6px 22px rgba(0, 0, 0, 0.06); }
+.timeline .mission.is-toggle:hover .mission-toggle { color: var(--text); }
+.timeline .mission.is-toggle:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; }
 
+/* appel à cliquer : la CARTE pulse (halo) + le chevron rebondit tant que c'est replié */
+.timeline .mission.is-toggle:not(.open) { animation: cardInvite 2s ease-in-out infinite; }
+.timeline .mission.is-toggle:not(.open) .mission-toggle::after { animation: missionChevron 1.6s ease-in-out infinite; }
+.timeline .mission.is-toggle:hover { animation: none; }               /* stop au survol → ombre de survol nette */
+.tl-entry:nth-child(2) .mission.is-toggle:not(.open) { animation-delay: 0.4s; }
+.tl-entry:nth-child(3) .mission.is-toggle:not(.open) { animation-delay: 0.8s; }
+
+@keyframes cardInvite {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);   border-color: var(--border); }
+  50%      { box-shadow: 0 0 0 5px var(--bg3);        border-color: var(--border2); }
+}
 @keyframes missionChevron {
   0%, 100% { transform: rotate(90deg) translateX(0); }
-  55%      { transform: rotate(90deg) translateX(4px); }
-}
-@keyframes missionInvite {
-  0%, 100% { color: var(--text2); }
-  55%      { color: var(--text); }
+  50%      { transform: rotate(90deg) translateX(5px); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .mission-toggle, .mission-toggle::after { animation: none !important; }
+  .timeline .mission.is-toggle, .mission-toggle::after { animation: none !important; }
 }
 .timeline .mission ul { margin-top: 0.9rem; }
 .timeline .mission ul[hidden] { display: none; }
