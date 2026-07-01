@@ -202,7 +202,8 @@
 .techmap-stage { position: relative; width: 100%; overflow: visible; }
 
 .techmap-links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
-.techmap-spoke { stroke: var(--border2); stroke-width: 1; }
+.techmap-spoke { stroke: var(--border2); stroke-width: 1; opacity: 0; transition: opacity 0.3s ease; }
+.techmap.cats-open .techmap-spoke { opacity: 1; }
 .techmap-link-item {
   stroke: var(--border2); stroke-width: 1;
   opacity: 0; transition: opacity 0.3s ease;
@@ -211,20 +212,29 @@
 
 .techmap-center {
   position: absolute; transform: translate(-50%, -50%); z-index: 3;
-  width: 88px; height: 88px; border-radius: 50%;
+  width: 88px; height: 88px; border-radius: 50%; cursor: pointer;
   display: grid; place-items: center; text-align: center;
-  background: var(--text); color: var(--bg2);
+  background: var(--text); color: var(--bg2); border: none;
   font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
+.techmap-center:hover { box-shadow: 0 0 0 6px var(--bg3); }
+.techmap.cats-open .techmap-center { box-shadow: 0 0 0 5px var(--bg3); }
 
 .techmap-pole {
-  position: absolute; transform: translate(-50%, -50%); z-index: 2;
+  position: absolute; z-index: 2;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0; pointer-events: none;                 /* masqué tant que le centre n'est pas ouvert */
   cursor: pointer; white-space: nowrap;
   padding: 7px 13px; border-radius: 99px;
   border: 1px solid var(--border2); background: var(--bg2); color: var(--text);
   font-family: 'DM Mono', monospace; font-size: 11.5px;
-  transition: opacity 0.25s ease, background 0.15s, border-color 0.15s, color 0.15s;
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.15s, border-color 0.15s, color 0.15s;
+}
+.techmap.cats-open .techmap-pole {
+  opacity: 1; pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
 }
 .techmap-pole:hover { background: var(--bg3); }
 .techmap-pole.active { background: var(--text); border-color: var(--text); color: var(--bg2); }

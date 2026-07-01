@@ -16,7 +16,7 @@
   const N = data.length;
   let stage, svg, center;
   const spokes = [], poles = [], branches = [], pills = [];
-  let openIndex = null, built = false;
+  let openIndex = null, built = false, catsOpen = false;
 
   function build() {
     if (built) return;
@@ -36,9 +36,12 @@
       spokes.push(l);
     });
 
-    center = document.createElement('div');
+    center = document.createElement('button');
+    center.type = 'button';
     center.className = 'techmap-center';
     center.textContent = map.dataset.center || 'Stack';
+    center.setAttribute('aria-expanded', 'false');
+    center.addEventListener('click', toggleCats);
     stage.appendChild(center);
 
     data.forEach((cat, i) => {
@@ -138,6 +141,20 @@
     });
   }
 
+  // Niveau 1 : le nœud central affiche / masque toutes les catégories
+  function toggleCats() {
+    catsOpen = !catsOpen;
+    center.setAttribute('aria-expanded', String(catsOpen));
+    map.classList.toggle('cats-open', catsOpen);
+    if (catsOpen) {
+      poles.forEach((p, i) => { p.style.transitionDelay = i * 40 + 'ms'; });   // apparition en cascade
+    } else {
+      close();                                                                  // referme un pôle ouvert
+      poles.forEach((p) => { p.style.transitionDelay = '0ms'; });
+    }
+  }
+
+  // Niveau 2 : un pôle affiche / masque ses items
   function toggle(idx) {
     if (openIndex === idx) { close(); return; }
     if (openIndex != null) collapse(openIndex);
