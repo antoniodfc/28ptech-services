@@ -211,16 +211,37 @@
 .techmap-link-item.in { opacity: 1; }
 
 .techmap-center {
-  position: absolute; transform: translate(-50%, -50%); z-index: 3;
-  width: 88px; height: 88px; border-radius: 50%; cursor: pointer;
+  position: absolute; z-index: 3; cursor: pointer;
+  width: 124px; height: 124px; border-radius: 50%;
   display: grid; place-items: center; text-align: center;
   background: var(--text); color: var(--bg2); border: none;
-  font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.06em;
+  font-family: 'DM Mono', monospace; font-size: 14px; letter-spacing: 0.09em;
   text-transform: uppercase;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  transform: translate(-50%, -50%);
+  animation: techBob 2.4s ease-in-out infinite;          /* respiration : incite au clic */
+  transition: box-shadow 0.2s ease;
 }
-.techmap-center:hover { box-shadow: 0 0 0 6px var(--bg3); }
-.techmap.cats-open .techmap-center { box-shadow: 0 0 0 5px var(--bg3); }
+.techmap-center::after {                                  /* halo pulsé autour du nœud */
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  border: 2px solid var(--text); pointer-events: none;
+  animation: techPulse 2s ease-out infinite;
+}
+.techmap-center:hover { box-shadow: 0 0 0 8px var(--bg3); }
+.techmap.cats-open .techmap-center {                      /* une fois ouvert : plus d'animation */
+  animation: none; transform: translate(-50%, -50%);
+  box-shadow: 0 0 0 5px var(--bg3);
+}
+.techmap.cats-open .techmap-center::after { animation: none; opacity: 0; }
+
+@keyframes techBob {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%      { transform: translate(-50%, -50%) scale(1.06); }
+}
+@keyframes techPulse {
+  0%   { transform: scale(1);   opacity: 0.5; }
+  70%  { opacity: 0; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
 
 .techmap-pole {
   position: absolute; z-index: 2;
@@ -258,6 +279,7 @@
 @media (prefers-reduced-motion: reduce) {
   .techmap-pill, .techmap-link-item { transition-duration: 0.001s; }
   .techmap-pill { transition-delay: 0s !important; }
+  .techmap-center, .techmap-center::after { animation: none !important; }
 }
 
 @media (max-width: 780px) {
