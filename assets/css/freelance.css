@@ -171,6 +171,23 @@
 .tl-entry:nth-child(odd) .mission::after { right: -2.75rem; }
 .tl-entry:nth-child(even) .mission::after { left: -2.75rem; }
 
+/* bouton "voir les réalisations" (accordéon, ajouté par mission-toggle.js) */
+.mission-toggle {
+  margin-top: 0.9rem; padding: 4px 0;
+  display: inline-flex; align-items: center; gap: 7px;
+  cursor: pointer; background: none; border: none;
+  font-family: 'DM Mono', monospace; font-size: 12px;
+  color: var(--text2); transition: color 0.15s;
+}
+.mission-toggle:hover { color: var(--text); }
+.mission-toggle::after {
+  content: '›'; font-size: 15px; line-height: 1;
+  transform: rotate(90deg); transition: transform 0.2s;
+}
+.mission-toggle.open::after { transform: rotate(-90deg); }
+.timeline .mission ul { margin-top: 0.9rem; }
+.timeline .mission ul[hidden] { display: none; }
+
 @media (max-width: 780px) {
   .timeline::before { left: 21px; }
   .tl-marker { left: 21px; }
