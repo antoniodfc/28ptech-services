@@ -102,11 +102,21 @@
 @media (max-width: 640px) { .perimetre-grid { grid-template-columns: 1fr; } }
 
 /* MISSIONS */
+.year-filter { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 1.5rem; }
+.year-chip {
+  cursor: pointer; font-family: 'DM Mono', monospace; font-size: 12px;
+  padding: 5px 14px; border-radius: 99px;
+  border: 1px solid var(--border2); background: var(--bg2);
+  color: var(--text2); transition: all 0.15s;
+}
+.year-chip:hover { background: var(--bg3); color: var(--text); }
+.year-chip.on { background: var(--text); border-color: var(--text); color: var(--bg2); }
 .missions {
   display: flex; flex-direction: column;
   border: 1px solid var(--border); border-radius: var(--r3);
   overflow: hidden; background: var(--bg2);
 }
+.mission.hidden { display: none; }
 .mission { padding: 1.75rem; border-bottom: 1px solid var(--border); transition: background 0.15s; }
 .mission:last-child { border-bottom: none; }
 .mission:hover { background: var(--bg3); }

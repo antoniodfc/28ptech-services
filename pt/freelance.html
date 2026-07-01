@@ -120,8 +120,18 @@
     <div class="section-label">Experiência</div>
     <h2 class="section-title">Missões &amp; realizações</h2>
     <p class="section-sub">Resultados mensuráveis, equipas reais.</p>
+    <div class="year-filter" role="group" aria-label="Filtrar por ano">
+      <button type="button" class="year-chip on">Tudo</button>
+      <button type="button" class="year-chip" data-year="2026">2026</button>
+      <button type="button" class="year-chip" data-year="2025">2025</button>
+      <button type="button" class="year-chip" data-year="2024">2024</button>
+      <button type="button" class="year-chip" data-year="2023">2023</button>
+      <button type="button" class="year-chip" data-year="2022">2022</button>
+      <button type="button" class="year-chip" data-year="2021">2021</button>
+      <button type="button" class="year-chip" data-year="2020">2020</button>
+    </div>
     <div class="missions">
-      <div class="mission">
+      <div class="mission" data-years="2026 2025">
         <div class="mission-head">
           <div>
             <div class="mission-co">Craft AI — Plataforma de IA, Paris</div>
@@ -140,7 +150,7 @@
           <li><strong>Documentação da arquitetura MLOps</strong>: diagramas de infraestrutura, runbooks operacionais e guias de troubleshooting.</li>
         </ul>
       </div>
-      <div class="mission">
+      <div class="mission" data-years="2025 2024 2023 2022">
         <div class="mission-head">
           <div>
             <div class="mission-co">Wethenew — Scale-up de e-commerce, Paris</div>
@@ -154,7 +164,7 @@
           <li>Automação de backups, acessos à BD e funções Lambda em Python.</li>
         </ul>
       </div>
-      <div class="mission">
+      <div class="mission" data-years="2022 2021 2020">
         <div class="mission-head">
           <div>
             <div class="mission-co">Data Service Group — Delaware, EUA</div>
@@ -458,5 +468,6 @@
   </div>
 </footer>
 
+<script src="../assets/js/mission-filter.js"></script>
 </body>
 </html>
